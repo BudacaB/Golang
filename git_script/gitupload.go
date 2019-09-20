@@ -5,21 +5,22 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"time"
 )
 
 func execute() {
 
-	// out1, err := exec.Command("powershell", "git status").Output()
-	// output1 := string(out1[:])
-	// fmt.Println(output1)
+	out1, err := exec.Command("powershell", "git status").Output()
+	output1 := string(out1[:])
+	fmt.Println(output1)
 
-	// time.Sleep(5 * time.Second)
+	time.Sleep(5 * time.Second)
 
-	// out2, err := exec.Command("powershell", "git add .").Output()
-	// output2 := string(out2[:])
-	// fmt.Println(output2)
+	out2, err := exec.Command("powershell", "git add .").Output()
+	output2 := string(out2[:])
+	fmt.Println(output2)
 
-	// time.Sleep(5 * time.Second)
+	time.Sleep(5 * time.Second)
 
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter commit description: ")
@@ -28,6 +29,12 @@ func execute() {
 	out3, err := exec.Command("powershell", fmt.Sprintf("git commit -am \"%s\"", text)).Output()
 	output3 := string(out3[:])
 	fmt.Println(output3)
+
+	time.Sleep(5 * time.Second)
+
+	out4, err := exec.Command("powershell", "git push").Output()
+	output4 := string(out4[:])
+	fmt.Println(output4)
 
 	if err != nil {
 		fmt.Printf("%s", err)
