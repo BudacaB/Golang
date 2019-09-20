@@ -10,31 +10,31 @@ import (
 
 func execute() {
 
-	out1, err := exec.Command("powershell", "git status").Output()
-	output1 := string(out1[:])
-	fmt.Println(output1)
+	outStatus, err := exec.Command("powershell", "git status").Output()
+	outputStatus := string(outStatus[:])
+	fmt.Println(outputStatus)
 
 	time.Sleep(5 * time.Second)
 
-	out2, err := exec.Command("powershell", "git add .").Output()
-	output2 := string(out2[:])
-	fmt.Println(output2)
+	outAdd, err := exec.Command("powershell", "git add .").Output()
+	outputAdd := string(outAdd[:])
+	fmt.Println(outputAdd)
 
 	time.Sleep(5 * time.Second)
 
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter commit description: ")
-	text, _ := reader.ReadString('\n')
+	fmt.Print("Enter commit message: ")
+	commitMessage, _ := reader.ReadString('\n')
 
-	out3, err := exec.Command("powershell", fmt.Sprintf("git commit -am \"%s\"", text)).Output()
-	output3 := string(out3[:])
-	fmt.Println(output3)
+	outCommit, err := exec.Command("powershell", fmt.Sprintf("git commit -am \"%s\"", commitMessage)).Output()
+	outputCommit := string(outCommit[:])
+	fmt.Println(outputCommit)
 
 	time.Sleep(5 * time.Second)
 
-	out4, err := exec.Command("powershell", "git push").Output()
-	output4 := string(out4[:])
-	fmt.Println(output4)
+	outPush, err := exec.Command("powershell", "git push").Output()
+	outputPush := string(outPush[:])
+	fmt.Println(outputPush)
 
 	if err != nil {
 		fmt.Printf("%s", err)
