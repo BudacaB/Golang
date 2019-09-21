@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"os"
 	"os/exec"
@@ -9,6 +10,20 @@ import (
 )
 
 func execute() {
+
+	var optionMessage string
+	var commitMessage string
+
+	flag.StringVar(&optionMessage, "msg", "", "Input commit message")
+	flag.Parse()
+
+	if optionMessage == "" {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("Enter commit message: ")
+		commitMessage, _ = reader.ReadString('\n')
+	} else {
+		commitMessage = optionMessage
+	}
 
 	outStatus, err := exec.Command("powershell", "git status").Output()
 	outputStatus := string(outStatus[:])
@@ -21,10 +36,6 @@ func execute() {
 	fmt.Println(outputAdd)
 
 	time.Sleep(5 * time.Second)
-
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter commit message: ")
-	commitMessage, _ := reader.ReadString('\n')
 
 	outCommit, err := exec.Command("powershell", fmt.Sprintf("git commit -am \"%s\"", commitMessage)).Output()
 	outputCommit := string(outCommit[:])
