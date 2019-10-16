@@ -5,7 +5,7 @@ You can also add it to the PATH for ease of use.
 
 #### Usage
 
-Options:
+##### Options:
 
 -m string
 Input commit message (Required)
@@ -13,7 +13,7 @@ Input commit message (Required)
 -b string
 Input branch name - master or other (Required)
 
-It runs:
+##### It runs:
 
 1. git status
 2. git add .
