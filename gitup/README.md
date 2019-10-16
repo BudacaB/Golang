@@ -17,5 +17,5 @@ It runs:
 
 1. git status
 2. git add .
-3. git commit -am <commit-message>
-4. git push origin <branch-name>
+3. git commit -am "commit-message"
+4. git push origin "branch-name"
